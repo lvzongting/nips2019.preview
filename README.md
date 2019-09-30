@@ -78,10 +78,19 @@ python get_arxiv.py
 
 ![检索arxiv](image/检索arxiv.png)
 
-### 如何获得 paper.list 文件
-
-
 ### 根据观察改进题目相似度threshold，获得更好的结果
+
+设置相似度threshold，根据如下观察：
+
+* 论文发表时间，不可以 ❌
+* 多了一个简称，可以 ✅
+* 同义词有拼写误差，可以 ✅
+* 用词误差，可以 ✅
+* 多了一个非实意词，可以 ✅
+
+![相似题目](image/相似题目.png)
+
+### 如何获得 paper.list 文件
 
 ### 直接使用wget下载pdf文件
 
