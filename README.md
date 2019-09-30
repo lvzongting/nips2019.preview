@@ -61,10 +61,22 @@ pip install pandas arxiv --user
 cd nips2019.preview/script
 python get_arxiv.py
 ```
+4.目录与文件
+
 * 目录结构，在nips2019.preview/script 中运行python get_arxiv.py 会在上一级目录nips2019.preview 中存放所下载的pdf文件
 * 将需要作查询query的论文名称，保存在paper.list中，本项目提供的paper.list存放的是nips2019公布的[接受论文Accepted Papers](https://nips.cc/Conferences/2019/AcceptedPapersInitial)
 * 项目中提供的[paper_query_arxiv.pkl](script/paper_query_arxiv.pkl) 是2019/09/30所做检索结果的cache，如果打算重新做一遍query，请将这个文件删掉后再运行get_arxiv.py脚本
 * 生成的pdf下载地址列表保存在[pdf.list](script/pdf.list) 可以根据这个文件[直接使用wget下载pdf文件](https://github.com/lvzongting/nips2019.preview#%E7%9B%B4%E6%8E%A5%E4%BD%BF%E7%94%A8wget%E4%B8%8B%E8%BD%BDpdf%E6%96%87%E4%BB%B6)
+
+![script 文件说明](image/script文件目录.png)
+
+5.运行过程
+
+![运行过程](image/运行过程.png)
+
+6.去掉cache文件，重新检索arxiv.org过程
+
+![检索arxiv](image/检索arxiv.png)
 
 ### 如何获得 paper.list 文件
 
