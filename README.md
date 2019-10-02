@@ -23,7 +23,7 @@ md5sum: 55447b0bef998e1539e29cfb245c09b5
 
 ## Table of Contents 一些相关资料
 
-- [NIPS2019 公布的接受论文Accepted Papers 1430篇(全) ](https://nips.cc/Conferences/2019/AcceptedPapersInitial)
+- [NIPS2019 公布的接受论文列表Accepted Papers 1430篇(全) ](https://nips.cc/Conferences/2019/AcceptedPapersInitial)
 
 - [接受论文题目列表 paper.list](script/paper.list)  以及[【生成方法】](https://github.com/lvzongting/nips2019.preview#%E5%A6%82%E4%BD%95%E7%94%9F%E6%88%90-paperlist-%E6%96%87%E4%BB%B6)
 
@@ -42,7 +42,7 @@ md5sum: 55447b0bef998e1539e29cfb245c09b5
 
  ***************************************************************************
 
-## 运行get_arxiv.py 复现结果，自己打包
+## ✈️ 运行get_arxiv.py 复现结果，自己打包 ✈️
 
 ### 极速上手,脚本run起来
 1.下载程序
@@ -91,6 +91,11 @@ python get_arxiv.py
 ![相似题目](image/相似题目.png)
 
 ### 如何获得 paper.list 文件
+
+通过NIPS2019公布的接受论文列表[Accepted Papers](https://nips.cc/Conferences/2019/AcceptedPapersInitial)
+在浏览器DevTools中，隐藏显示作者信息，然后批量复制黏贴论文题目保存到paper.list文件
+
+![论文列表](image/论文列表.png)
 
 ### 直接使用wget下载pdf文件
 
