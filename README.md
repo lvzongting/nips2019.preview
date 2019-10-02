@@ -14,7 +14,7 @@ md5sum: 55447b0bef998e1539e29cfb245c09b5
 
 *Last updated: 2019/09/30*
 
-如果喜欢，或者觉得有帮助到你，请点击右上角 ⭐️Star， 帮我加颗星.
+如果喜欢，或觉得有帮助到你，请点击右上角 ⭐️Star， 帮我加颗星，并推荐给好友加更多的✨Star，谢谢.
 #### Update log
 * 2019/09/26 * - 更新710/1430篇文章 
 * 2019/09/30 * - 更新736/1430篇文章 改进论文题目相似度
@@ -29,6 +29,8 @@ md5sum: 55447b0bef998e1539e29cfb245c09b5
 
 - [在arxiv.org上可以检索的到pdf文件下载地址url列表 pdf.list](script/pdf.list) 以及[【直接使用wget下载方法】](#%E7%9B%B4%E6%8E%A5%E4%BD%BF%E7%94%A8wget%E4%B8%8B%E8%BD%BDpdf%E6%96%87%E4%BB%B6)
 
+- [接受论文题目列表 和 能检索到的对应arxiv地址文件 nips2019_preview.txt](script/nips2019_preview.txt) 以及 [【生成方法】](#生成便于观看的发布论文题目和对应arxiv地址文件 nips2019_preview.txt)
+
 ------------------------
 
 本项目服务于三类情况：
@@ -39,7 +41,7 @@ md5sum: 55447b0bef998e1539e29cfb245c09b5
 
 - 3.根据脚本运行的中间结果在ipython中play around 🚀 
 
-
+欢迎大家，以各种形式传播扩散本项目，谢谢。
  ***************************************************************************
 
 ## ✈️ 运行get_arxiv.py 复现结果，自己打包 ✈️
@@ -170,10 +172,69 @@ df_paper.loc[5]
 * name_title_match_ratio: 论文列表名称和论文题目单词相似度
 
 ### df_paper的构成
+本文中检索arxiv.org 网站使用的是[lukasschwab的 arxiv工具包](https://github.com/lukasschwab/arxiv.py)
 
+检索得到的结果存在变量paper中，paper是Dict字典类型，df_paper中的某条记录df_arxiv就是直接对这个字典直接转换(Dict to DataFrame)得到的
 
+```python
+df_arxiv = pd.DataFrame([paper])
+```
+然后再把这条记录update更新到df_paper表 
 
+```python
+df_paper = df_paper.combine_first(df_arxiv)
+```
+如果update失败，那就是检索到的paper字典里面包含的项目columns比主表df_paper多，那么要合并这些新的columns并且更新记录
+
+```python
+unique_arxiv_set = set(df_arxiv.columns) - set(df_paper.columns)
+df_paper = df_paper.join(df_arxiv[unique_arxiv_set])
+```
+初始化df_paper表的时候，是根据接受论文名字列表paper.list生成的
+
+```python
+df_paper = pd.read_csv("paper.list",names=['paper_name'],sep='=')
+```
+总的来说主表df_paper比字典paper多一个项目columns['paper_name']
+
+后面的题目相似度name_title_match_ratio就是计算df['paper_name']和df['title']的相似度
 ### df_paper的使用
+如果使用arxiv工具包中的下载工具arxiv.download那么就要通过df_paper还原字典paper，直接对某条记录进行DataFrame to Dict转换就可以了
 
+```python
+for idx in df_paper.index:
+    paper = df_paper.loc[idx].to_dict()
+    arxiv.download(arxiv_paper)
+```
 
+### 生成便于观看的发布论文题目和对应arxiv地址文件 nips2019_preview.txt
+主表df_paper中包含了关于paper的全部信息，查询/操作这个表就能轻易的生成任何我们想要的结果
 
+如果想要补充关于paper的信息，可以直接向这个表添加项目(columns)即可
+
+```python
+f = open("nips2019_preview.txt", "a")
+
+for idx in df_paper.index:
+    print(df_paper['paper_name'][idx],file=f)
+    if df_paper['name_title_match'][idx]:
+        print(df_paper['pdf_url'][idx],file=f)
+        
+f.close()    
+```
+或者更加随意的写法
+
+```python
+for idx in df_paper.index:
+    print(df_paper['paper_name'][idx],file=open("nips2019_preview.txt", "a"))
+    if df_paper['name_title_match'][idx]:
+        print(df_paper['pdf_url'][idx],file=open("nips2019_preview.txt", "a"))    
+```
+
+------------------------
+
+以上，
+这些信息希望对大家有用，如果还有什么需求，或者还有什么需要说明的，可以发issue，我会尽量快速的回答。
+Have fun.
+
+***************************************************************************
