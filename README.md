@@ -219,6 +219,7 @@ for idx in df_paper.index:
     print(df_paper['paper_name'][idx],file=f)
     if df_paper['name_title_match'][idx]:
         print(df_paper['pdf_url'][idx],file=f)
+    print('',file=f)
         
 f.close()    
 ```
@@ -234,7 +235,9 @@ for idx in df_paper.index:
 ------------------------
 
 以上，
+
 这些信息希望对大家有用，如果还有什么需求，或者还有什么需要说明的，可以发issue，我会尽量快速的回答。
+
 Have fun.
 
 ***************************************************************************
