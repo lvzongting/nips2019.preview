@@ -25,9 +25,9 @@ md5sum: 55447b0bef998e1539e29cfb245c09b5
 
 - [NIPS2019 公布的接受论文列表Accepted Papers 1430篇(全) ](https://nips.cc/Conferences/2019/AcceptedPapersInitial)
 
-- [接受论文题目列表 paper.list](script/paper.list)  以及[【生成方法】](https://github.com/lvzongting/nips2019.preview#%E5%A6%82%E4%BD%95%E7%94%9F%E6%88%90-paperlist-%E6%96%87%E4%BB%B6)
+- [接受论文题目列表 paper.list](script/paper.list)  以及[【生成方法】](#%E5%A6%82%E4%BD%95%E7%94%9F%E6%88%90-paperlist-%E6%96%87%E4%BB%B6)
 
-- [在arxiv.org上可以检索的到pdf文件下载地址url列表 pdf.list](script/pdf.list) 以及[【直接使用wget下载方法】](https://github.com/lvzongting/nips2019.preview#%E7%9B%B4%E6%8E%A5%E4%BD%BF%E7%94%A8wget%E4%B8%8B%E8%BD%BDpdf%E6%96%87%E4%BB%B6)
+- [在arxiv.org上可以检索的到pdf文件下载地址url列表 pdf.list](script/pdf.list) 以及[【直接使用wget下载方法】](#%E7%9B%B4%E6%8E%A5%E4%BD%BF%E7%94%A8wget%E4%B8%8B%E8%BD%BDpdf%E6%96%87%E4%BB%B6)
 
 ------------------------
 
@@ -66,7 +66,7 @@ python get_arxiv.py
 * 目录结构，在nips2019.preview/script 中运行python get_arxiv.py 会在上一级目录nips2019.preview 中存放所下载的pdf文件
 * 将需要作查询query的论文名称，保存在paper.list中，本项目提供的paper.list存放的是nips2019公布的[接受论文Accepted Papers](https://nips.cc/Conferences/2019/AcceptedPapersInitial)
 * 项目中提供的[paper_query_arxiv.pkl](script/paper_query_arxiv.pkl) 是2019/09/30所做检索结果的cache，如果打算重新做一遍query，请将这个文件删掉后再运行get_arxiv.py脚本
-* 生成的pdf下载地址列表保存在[pdf.list](script/pdf.list) 可以根据这个文件[直接使用wget下载pdf文件](https://github.com/lvzongting/nips2019.preview#%E7%9B%B4%E6%8E%A5%E4%BD%BF%E7%94%A8wget%E4%B8%8B%E8%BD%BDpdf%E6%96%87%E4%BB%B6)
+* 生成的pdf下载地址列表保存在[pdf.list](script/pdf.list) 可以根据这个文件[直接使用wget下载pdf文件](#%E7%9B%B4%E6%8E%A5%E4%BD%BF%E7%94%A8wget%E4%B8%8B%E8%BD%BDpdf%E6%96%87%E4%BB%B6)
 
 ![script 文件说明](image/script文件目录.png)
 
@@ -93,11 +93,52 @@ python get_arxiv.py
 ### 如何获得 paper.list 文件
 
 通过NIPS2019公布的接受论文列表[Accepted Papers](https://nips.cc/Conferences/2019/AcceptedPapersInitial)
-在浏览器DevTools中，隐藏显示作者信息，然后批量复制黏贴论文题目保存到paper.list文件
+在浏览器DevTools中检查元素模式(Cmd/Ctrl + Shift + C)，临时编辑CSS属性，隐藏显示作者信息，然后批量复制黏贴论文题目保存到paper.list文件
 
-![论文列表](image/论文列表.png)
+![生成论文列表](image/生成论文列表.png)
 
 ### 直接使用wget下载pdf文件
+
+在pdf.list文件所在目录执行
+
+```bash
+wget -c -U definitely-not-wget -P ../ -i pdf.list
+```
+* -c 断点续传，避免重复下载，如果下载过且完整则跳过，如果下载过不完整则继续下载
+* -U definitely-not-wget 指定users-agent 不指定arxiv.org 会报403错误
+* -i 指定批量pdf下载地址url的文件，即pdf.list
+* -P ../ 指定下载目录，为了方便文件管理，区分脚本和下载下来的pdf文件，指定pdf下载到上一级目录，如果不指定，就在当前目录下载
+
+pdf.list文件大概是这个样子的：
+
+```bash
+http://arxiv.org/pdf/1908.02265v1
+http://arxiv.org/pdf/1905.10630v1
+http://arxiv.org/pdf/1908.10553v1
+http://arxiv.org/pdf/1902.03245v1
+http://arxiv.org/pdf/1906.05909v1
+http://arxiv.org/pdf/1909.04630v1
+http://arxiv.org/pdf/1907.03395v2
+http://arxiv.org/pdf/1909.02466v1
+http://arxiv.org/pdf/1909.03951v1
+http://arxiv.org/pdf/1906.02830v1
+```
+wget 直接下载下来之后文件名就是这样的
+
+```bash
+1908.02265v1
+1905.10630v1
+1908.10553v1
+1902.03245v1
+1906.05909v1
+1909.04630v1
+1907.03395v2
+1909.02466v1
+1909.03951v1
+1906.02830v1
+```
+
+根据需要，可以进行批量重命名，比如GUI工具[gprename](https://linuxtoy.org/archives/gprename.html)，[krename](https://linuxtoy.org/archives/krename.html)
 
 ## 在ipython中play around
 
