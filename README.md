@@ -140,7 +140,40 @@ wget 直接下载下来之后文件名就是这样的
 
 根据需要，可以进行批量重命名，比如GUI工具[gprename](https://linuxtoy.org/archives/gprename.html)，[krename](https://linuxtoy.org/archives/krename.html)
 
-## 在ipython中play around
+## 🚀在ipython中play around 🚀
 
-### 核心表 df_paper
+在ipython中执行
+
+```python
+%run get_arxiv.py
+```
+在等待10s的时候，或者开始下载之前ctrl+c 暂停程序回到ipython开始play around
+
+查看内存中的所有变量
+
+```bash
+whos 
+```
+![whos](image/whos.png)
+
+核心变量是pandas的Dataframe表，df_paper
+
+```bash
+df_paper.loc[5]
+```
+![df_paper](image/df_paper.png)
+
+常用到的columns有: 
+* title: 论文题目
+* paper_name: 论文列表名称
+* arxiv_url: 下载地址
+* name_title_match_ratio: 论文列表名称和论文题目单词相似度
+
+### df_paper的构成
+
+
+
+### df_paper的使用
+
+
 
