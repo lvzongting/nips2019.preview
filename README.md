@@ -29,7 +29,7 @@ md5sum: 55447b0bef998e1539e29cfb245c09b5
 
 - [在arxiv.org上可以检索的到pdf文件下载地址url列表 pdf.list](script/pdf.list) 以及[【直接使用wget下载方法】](#%E7%9B%B4%E6%8E%A5%E4%BD%BF%E7%94%A8wget%E4%B8%8B%E8%BD%BDpdf%E6%96%87%E4%BB%B6)
 
-- [接受论文题目列表 和 能检索到的对应arxiv地址文件 nips2019_preview.txt](script/nips2019_preview.txt) 以及 [【生成方法】](#生成便于观看的发布论文题目和对应arxiv地址文件 nips2019_preview.txt)
+- [接受论文题目列表 和 能检索到的对应arxiv地址文件 nips2019_preview.txt](script/nips2019_preview.txt) 以及[【生成方法】](#%E7%94%9F%E6%88%90%E4%BE%BF%E4%BA%8E%E8%A7%82%E7%9C%8B%E7%9A%84%E5%8F%91%E5%B8%83%E8%AE%BA%E6%96%87%E9%A2%98%E7%9B%AE%E5%92%8C%E5%AF%B9%E5%BA%94arxiv%E5%9C%B0%E5%9D%80%E6%96%87%E4%BB%B6-nips2019_previewtxt)
 
 ------------------------
 
